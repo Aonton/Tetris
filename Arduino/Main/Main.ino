@@ -13,7 +13,7 @@
 // global space (Remember: Does it really need to be here?!)
 enum buttons { UNUSED1= 0, UNUSED2= 1, UP = 2, DOWN = 3, LEFT = 5, RIGHT =6 };
 
-LineShape test;
+LineShape test(90,40,32);
 //LShape test;
 
 void setup() {
@@ -37,19 +37,27 @@ void loop() {
   uView.clear(PAGE);
 
   if(digitalRead(UP) == LOW)
-  {   test.draw();
+  {   test.setPieceLoc(40,32);
+      test.setCurrentOrient(90);
+      test.draw();
   }
 
   if(digitalRead(DOWN) == LOW)
-  {   uView.line(0,0,20,20);
+  {   test.setPieceLoc(10,0);
+      test.setCurrentOrient(0);
+      test.draw();
   }
 
   if(digitalRead(LEFT) == LOW)
-  {   uView.line(0,0,30,30);
+  {   test.setPieceLoc(90,0);
+      test.setCurrentOrient(0);
+      test.draw();
   }
 
   if(digitalRead(RIGHT) == LOW)
-  {   uView.line(0,0,40,40);
+  {   test.setPieceLoc(0,-1);
+      test.setCurrentOrient(90);
+      test.draw();
   }
 
   uView.display();

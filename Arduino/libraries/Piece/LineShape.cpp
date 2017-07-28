@@ -10,6 +10,7 @@ LineShape::LineShape(){
 };
 
 void LineShape::draw(){
-  uView.line(0,0,10,10);
-  Serial.println("Drew line");
+  uView.line(0,0,4,0);
+  uView.line(0,1,4,1);
+  Serial.println("Draw line");
 };
