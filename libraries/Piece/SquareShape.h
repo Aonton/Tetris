@@ -6,8 +6,20 @@
 #ifndef SQUARE_SHAPE_H
 #define SQUARE_SHAPE_H
 
-class SquareShape{
+#include <MicroView.h>
+#include "Tetrominoes.h"
+
+class SquareShape: public: Tetrominoes{
   public:
+    SquareShape();
+    SquareShape(int,int,int);
+
+    virtual bool draw() const;
+    // TO DO: MOVE THIS COMMENT TO A MORE APP. PLACE
+    // Note piece_loc is the top left most pixel
+    // when line [][] is in orientation 0
+    // ..........[][] ..............................
+
   private:
 
 };

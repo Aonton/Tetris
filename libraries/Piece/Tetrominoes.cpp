@@ -54,3 +54,26 @@ int Tetrominoes::getPieceLoc(int coord) const{
 int Tetrominoes::getCurrentOrient() const{
   return currentOrient;
 }
+
+bool Tetrominoes::drawDegree(int x_edge, int y_edge, int points[],int numOfCoord) const{
+  if(piece_loc[0]<x_edge && piece_loc[1]<y_edge)
+  {
+    for(int i=0; i<numOfCoord; i=i+4)
+    { uView.line(points[i],points[i+1],points[i+2],points[i+3]);
+      Serial.print("Set of points ");
+      Serial.println(i);
+      Serial.println(points[i]);
+      Serial.println(points[i+1]);
+      Serial.println(points[i+2]);
+      Serial.println(points[i+3]);
+    }
+
+
+    return true;
+  }
+  else
+  {
+    Serial.println("Piece is at the edge");
+    return false;
+  }
+};

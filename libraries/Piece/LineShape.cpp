@@ -4,58 +4,43 @@
 
 #include "LineShape.h"
 
-LineShape::LineShape(): Tetrominoes(){
-  Serial.print("LineShape Constructor");
-  Serial.println();
-};
+LineShape::LineShape(): Tetrominoes(){};
 
 LineShape::LineShape(int c,int x, int y):
                      Tetrominoes(c,x,y){};
 
-void LineShape::draw(){
+bool LineShape::draw() const{
+  const int location[2]={getPieceLoc(1),getPieceLoc(2)};
+  const int numOfCoord=8;
 
-  const int col=8;
-  const int row=1;
-  // int add_to_loc[numOfCoord]={0,0,0,0};
-  // change add_to_loc to determine the line length
-  int location[2]={getPieceLoc(1),getPieceLoc(2)};
-
-  // try to remove hard coding later
-
-  // Line piece will look like this [][][][]
-  if (currentOrient==DEGREE0 || currentOrient==DEGREE180)
-  { Serial.println("horizontal");
-    if(location[0]<=display_size_len-col && location[1]!=display_size_wid)
-    { uView.line(location[0],location[1],location[0]+col,location[1]);
-      uView.line(location[0],location[1]+row,location[0]+col,location[1]+row);
-    }
-    else
-    {
-      Serial.println("Piece is at the edge");
-    }
-  }
-  // Line piece will look like this []
-  // ...............................[]
-  // ...............................[]
-  // ...............................[]
-  else if (currentOrient==DEGREE90 || currentOrient==DEGREE270)
-  { Serial.println("vertical");
-    if(location[0]!=0 && location[1]<=display_size_wid-col);
-    { uView.line(location[0],location[1],location[0],location[1]+col);
-      uView.line(location[0]-row,location[1],location[0],location[1]+col);
-    }
-  }
-  else
+  // FIND A WAY TO SCALE THE PIECES
+  switch(getCurrentOrient())
   {
-    Serial.println("Incorrect Orienation");
-  }
+     case DEGREE0:
+     case DEGREE180:
+     {   // Line piece will look like this [][][][]
+         const int points[numOfCoord]={location[0],location[1],location[0]+4,location[1],
+                                       location[0],location[1]+1,location[0]+4,location[1]+1};
 
-  // add for loop for the other sizes
-  // Might be a better way to do this
-  /*uView.line(piece_loc[0]+add_to_loc[0],piece_loc[1]+add_to_loc[1],
-             piece_loc[0]+add_to_loc[2],piece_loc[1]+add_to_loc[3]);*/
+         return(drawDegree(display_size_len-3,display_size_wid,points,numOfCoord));
+     }
+     break;
+     case DEGREE90:
+     case DEGREE270:
+     {   // Line piece will look like this []..
+         // ...............................[]..
+         // ...............................[]..
+         // ...............................[]..
+         const int points[numOfCoord]={location[0],location[1],location[0],location[1]+4,
+                                       location[0]+1,location[1],location[0]+1,location[1]+4};
 
-  //uView.line(0,0,8,0);
-  //uView.line(0,1,8,1);
-  Serial.println("Draw line");
+         return(drawDegree(display_size_len,display_size_wid-3,points,numOfCoord));
+
+     }
+     break;
+     default:
+     {   Serial.println("Incorrect Orientation");
+         return false;
+     }
+  }; // end of switch statement
 };
