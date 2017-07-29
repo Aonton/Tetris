@@ -9,9 +9,13 @@ LShape::LShape(): Tetrominoes(){};
 LShape::LShape(int c, int x, int y):
                      Tetrominoes(c,x,y){};
 
-bool LShape::draw() const{
-  const int location[2]={getPieceLoc(1),getPieceLoc(2)};
-  const int numOfCoord=16;
+bool LShape::draw(int scale) const{
+  bool is_true=false;
+  const int width_rec=1*scale;
+  const int height_rec=3*scale;
+  const int width_sq=1*scale;
+  const int height_sq=1*scale;
+  int square_pos[2]={0,0};
 
 // FIND A WAY TO SCALE THE PIECES
   switch(getCurrentOrient())
@@ -20,23 +24,28 @@ bool LShape::draw() const{
      {   // L piece will look like this []..
          // ............................[]..
          // ............................[][]
-         const int points[numOfCoord]={location[0],location[1],location[0],location[1]+3,
-                                       location[0]+1,location[1]+2,location[0]+2,location[1]+2,
-                                       location[0]+1,location[1],location[0]+1,location[1]+2,
-                                       location[0]+1,location[1]+3,location[0]+2,location[1]+3};
 
-         return(drawDegree(display_size_len-1,display_size_wid-2,points,numOfCoord));
+         if(drawDegree(display_size_len-1-((scale-1)*2),display_size_wid-2-((scale-1)*3)))
+         {   square_pos[0]=1*scale;
+             square_pos[1]=2*scale;
+
+             uView.rectFill(getPieceLoc(1),getPieceLoc(2),width_rec,height_rec);
+             uView.rectFill(getPieceLoc(1)+square_pos[0],getPieceLoc(2)+square_pos[1],width_sq,height_sq);
+             is_true=true;
+         }
      }
      break;
      case DEGREE90:
      {   // L piece will look like this [][][]
          // ............................[]....
-         const int points[numOfCoord]={location[0],location[1],location[0]+3,location[1],
-                                       location[0],location[1]+1,location[0],location[1]+2,
-                                       location[0],location[1]+1,location[0]+3,location[1]+1,
-                                       location[0]+1,location[1]+1,location[0]+1,location[1]+2};
 
-         return(drawDegree(display_size_len-2,display_size_wid-1,points,numOfCoord));
+         if(drawDegree(display_size_len-2-((scale-1)*3),display_size_wid-1-((scale-1)*2)))
+         {   square_pos[1]=1*scale;
+
+             uView.rectFill(getPieceLoc(1),getPieceLoc(2),height_rec,width_rec);
+             uView.rectFill(getPieceLoc(1),getPieceLoc(2)+square_pos[1],width_sq,height_sq);
+             is_true=true;
+         }
 
      }
      break;
@@ -45,30 +54,34 @@ bool LShape::draw() const{
          // ..............................[]
          // ..............................[]
 
-         const int points[numOfCoord]={location[0]+1,location[1],location[0]+1,location[1]+3,
-                                       location[0],location[1],location[0]+1,location[1],
-                                       location[0]+2,location[1],location[0]+2,location[1]+3,
-                                       location[0],location[1]+1,location[0]+1,location[1]+1};
+         if(drawDegree(display_size_len-1-((scale-1)*2),display_size_wid-2-((scale-1)*3)))
+         {   square_pos[0]=1*scale;
 
-         return(drawDegree(display_size_len-1,display_size_wid-2,points,numOfCoord));
+             uView.rectFill(getPieceLoc(1)+square_pos[0],getPieceLoc(2),width_rec,height_rec);
+             uView.rectFill(getPieceLoc(1),getPieceLoc(2),width_sq,height_sq);
+             is_true=true;
+         }
+
      }
      break;
      case DEGREE270:
      {   // L piece will look like this [][][]
          // ................................[]
 
-         const int points[numOfCoord]={location[0],location[1],location[0]+3,location[1],
-                                       location[0]+2,location[1]+1,location[0]+2,location[1]+2,
-                                       location[0],location[1]+1,location[0]+3,location[1]+1,
-                                       location[0]+3,location[1]+1,location[0]+3,location[1]+2};
+         if(drawDegree(display_size_len-2-((scale-1)*3),display_size_wid-1-((scale-1)*2)))
+         {   square_pos[0]=2*scale;
+             square_pos[1]=1*scale;
 
-         return(drawDegree(display_size_len-2,display_size_wid-1,points,numOfCoord));
-
+             uView.rectFill(getPieceLoc(1),getPieceLoc(2),height_rec,width_rec);
+             uView.rectFill(getPieceLoc(1)+square_pos[0],getPieceLoc(2)+square_pos[1],width_sq,height_sq);
+             is_true=true;
+         }
       }
       break;
       default:
       {   Serial.println("Incorrect Orientation");
-          return false;
       }
    }; // end of switch statement
+
+   return is_true;
 };

@@ -19,8 +19,8 @@ class Tetrominoes{
     void setCurrentOrient(int);
     int getCurrentOrient() const;
   protected:
-    virtual bool draw() const=0;
-    bool drawDegree(int,int,int[],int) const;
+    virtual bool draw(int) const=0;
+    bool drawDegree(int,int) const;
 
    // should be rid of this enum-> useless
     enum orientation { DEGREE0=0, DEGREE90=90, DEGREE180=180, DEGREE270=270 };

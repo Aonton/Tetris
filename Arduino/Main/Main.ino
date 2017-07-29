@@ -14,7 +14,8 @@
 enum buttons { UNUSED1= 0, UNUSED2= 1, UP = 2, DOWN = 3, LEFT = 5, RIGHT =6 };
 
 //LineShape test;
-LShape test;
+//LShape test;
+SquareShape test;
 
 void setup() {
   const int numOfPins=6;
@@ -39,25 +40,25 @@ void loop() {
   if(digitalRead(UP) == LOW)
   {   test.setPieceLoc(0,0);
       test.setCurrentOrient(0);
-      test.draw();
+      test.draw(1);
   }
 
   if(digitalRead(DOWN) == LOW)
   {   test.setPieceLoc(0,0);
       test.setCurrentOrient(90);
-      test.draw();
+      test.draw(2);
   }
 
   if(digitalRead(LEFT) == LOW)
   {   test.setPieceLoc(0,0);
       test.setCurrentOrient(180);
-      test.draw();
+      test.draw(3);
   }
 
   if(digitalRead(RIGHT) == LOW)
   {   test.setPieceLoc(0,0);
       test.setCurrentOrient(270);
-      test.draw();
+      test.draw(4);
   }
 
   uView.display();

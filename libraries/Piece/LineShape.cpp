@@ -9,20 +9,22 @@ LineShape::LineShape(): Tetrominoes(){};
 LineShape::LineShape(int c,int x, int y):
                      Tetrominoes(c,x,y){};
 
-bool LineShape::draw() const{
-  const int location[2]={getPieceLoc(1),getPieceLoc(2)};
-  const int numOfCoord=8;
+bool LineShape::draw(int scale) const{
 
-  // FIND A WAY TO SCALE THE PIECES
+bool is_true=false;
+const int width=1*scale;
+const int height=4*scale;
+
   switch(getCurrentOrient())
   {
      case DEGREE0:
      case DEGREE180:
      {   // Line piece will look like this [][][][]
-         const int points[numOfCoord]={location[0],location[1],location[0]+4,location[1],
-                                       location[0],location[1]+1,location[0]+4,location[1]+1};
 
-         return(drawDegree(display_size_len-3,display_size_wid,points,numOfCoord));
+         if(drawDegree(display_size_len-3-((scale-1)*4),display_size_wid))
+         { uView.rectFill(getPieceLoc(1),getPieceLoc(2),height,width);
+           is_true=true;
+         }
      }
      break;
      case DEGREE90:
@@ -31,16 +33,17 @@ bool LineShape::draw() const{
          // ...............................[]..
          // ...............................[]..
          // ...............................[]..
-         const int points[numOfCoord]={location[0],location[1],location[0],location[1]+4,
-                                       location[0]+1,location[1],location[0]+1,location[1]+4};
 
-         return(drawDegree(display_size_len,display_size_wid-3,points,numOfCoord));
-
+         if(drawDegree(display_size_len,display_size_wid-3-((scale-1)*4)))
+         { uView.rectFill(getPieceLoc(1),getPieceLoc(2),width,height);
+           is_true=true;
+         }
      }
      break;
      default:
      {   Serial.println("Incorrect Orientation");
-         return false;
      }
   }; // end of switch statement
+
+  return is_true;
 };

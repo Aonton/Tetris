@@ -14,7 +14,7 @@ class LShape: public Tetrominoes{
     LShape();
     LShape(int,int,int);
 
-    virtual bool draw() const;
+    virtual bool draw(int) const;
     // TO DO: MOVE THIS COMMENT TO A MORE APP. PLACE
     // Note piece_loc is the top left most pixel
     // when the L shape is in orientation DEGREE0

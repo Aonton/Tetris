@@ -9,12 +9,12 @@
 #include <MicroView.h>
 #include "Tetrominoes.h"
 
-class SquareShape: public: Tetrominoes{
+class SquareShape: public Tetrominoes{
   public:
     SquareShape();
     SquareShape(int,int,int);
 
-    virtual bool draw() const;
+    virtual bool draw(int) const;
     // TO DO: MOVE THIS COMMENT TO A MORE APP. PLACE
     // Note piece_loc is the top left most pixel
     // when line [][] is in orientation 0

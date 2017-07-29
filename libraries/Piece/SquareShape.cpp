@@ -9,9 +9,10 @@ SquareShape::SquareShape(): Tetrominoes(){};
 SquareShape::SquareShape(int c,int x, int y):
                      Tetrominoes(c,x,y){};
 
-bool SquareShape::draw() const{
-  const int location[2]={getPieceLoc(1),getPieceLoc(2)};
-  const int numOfCoord=8;
+bool SquareShape::draw(int scale) const{
+  bool is_true=false;
+  const int width=2*scale;
+  const int height=2*scale;
 
   // FIND A WAY TO SCALE THE PIECES
   switch(getCurrentOrient())
@@ -22,16 +23,17 @@ bool SquareShape::draw() const{
      case DEGREE270:
      {   // Line piece will look like this [][]
          // ...............................[][]
-         const int points[numOfCoord]={location[0],location[1],location[0],location[1]+4,
-                                       location[0]+1,location[1],location[0]+1,location[1]+4};
 
-         return(drawDegree(display_size_len,display_size_wid-3,points,numOfCoord));
-
+         if(drawDegree(display_size_len-(1*scale),display_size_wid-(1*scale)))
+         {   uView.rectFill(getPieceLoc(1),getPieceLoc(2),width,height);
+             is_true=true;
+         }
      }
      break;
      default:
      {   Serial.println("Incorrect Orientation");
-         return false;
      }
   }; // end of switch statement
+
+  return is_true;
 };
