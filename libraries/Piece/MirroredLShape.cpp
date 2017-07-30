@@ -21,8 +21,8 @@ bool MirroredLShape::draw(int scale) const{
   {
      case DEGREE0:
      {   // Mirrored L piece will look like this []..
-         // ............................[]..
-         // ..........................[][]..
+         // .....................................[]..
+         // ...................................[][]..
 
          if(drawDegree(display_size_len-1-((scale-1)*2),display_size_wid-2-((scale-1)*3)))
          {   repos[0]=1*scale;

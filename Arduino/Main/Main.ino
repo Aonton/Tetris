@@ -1,6 +1,11 @@
 #include <SoftwareSerial.h>
 #include <MicroView.h>
 
+// PUT THE TWO BELOW INTO ANOTHER LIBRARY
+#include <PieceBoard.h>
+
+#include <GeneratePiece.h>
+
 #include <LineShape.h>
 #include <LShape.h>
 #include <MirroredLShape.h>
@@ -15,7 +20,14 @@ enum buttons { UNUSED1= 0, UNUSED2= 1, UP = 2, DOWN = 3, LEFT = 5, RIGHT =6 };
 
 //LineShape test;
 //LShape test;
-SquareShape test;
+//SquareShape test;
+//MirroredLShape test;
+//TShape test2;
+//ZShape test3;
+//SShape test4;
+//PieceBoard test;
+
+// CHECK DRAW LIMIT
 
 void setup() {
   const int numOfPins=6;
@@ -25,6 +37,7 @@ void setup() {
   uView.clear(PAGE);
   uView.display();
   Serial.begin(9600);
+  randomSeed(analogRead(0));
 
   for (int i=2; i<numOfPins; i++)
   {
@@ -35,31 +48,35 @@ void setup() {
 
 void loop() {
 
+  PieceBoard test;
+
   uView.clear(PAGE);
 
-  if(digitalRead(UP) == LOW)
+  /*if(digitalRead(UP) == LOW)
   {   test.setPieceLoc(0,0);
       test.setCurrentOrient(0);
-      test.draw(1);
-  }
-
-  if(digitalRead(DOWN) == LOW)
-  {   test.setPieceLoc(0,0);
-      test.setCurrentOrient(90);
-      test.draw(2);
-  }
-
-  if(digitalRead(LEFT) == LOW)
-  {   test.setPieceLoc(0,0);
-      test.setCurrentOrient(180);
       test.draw(3);
   }
 
-  if(digitalRead(RIGHT) == LOW)
-  {   test.setPieceLoc(0,0);
-      test.setCurrentOrient(270);
-      test.draw(4);
+  if(digitalRead(DOWN) == LOW)
+  {   test2.setPieceLoc(0,30);
+      test2.setCurrentOrient(90);
+      test2.draw(3);
   }
+
+  if(digitalRead(LEFT) == LOW)
+  {   test3.setPieceLoc(30,0);
+      test3.setCurrentOrient(180);
+      test3.draw(3);
+  }
+
+  if(digitalRead(RIGHT) == LOW)
+  {   test4.setPieceLoc(30,30);
+      test4.setCurrentOrient(270);
+      test4.draw(3);
+  }*/
+
+ test.display();
 
   uView.display();
 }

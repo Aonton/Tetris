@@ -18,8 +18,9 @@ class Tetrominoes{
 
     void setCurrentOrient(int);
     int getCurrentOrient() const;
-  protected:
+
     virtual bool draw(int) const=0;
+  protected:
     bool drawDegree(int,int) const;
 
    // should be rid of this enum-> useless

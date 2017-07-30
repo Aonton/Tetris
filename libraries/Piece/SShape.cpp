@@ -43,7 +43,7 @@ bool SShape::draw(int scale) const{
              repos[1]=1*scale;
 
              uView.rectFill(getPieceLoc(1),getPieceLoc(2),height,width);
-             uView.rectFill(getPieceLoc(1)+repos[0],getPieceLoc(2)+repos[1],width,height);
+             uView.rectFill(getPieceLoc(1)+repos[0],getPieceLoc(2)+repos[1],height,width);
              is_true=true;
          }
 

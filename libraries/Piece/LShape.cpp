@@ -10,6 +10,7 @@ LShape::LShape(int c, int x, int y):
                      Tetrominoes(c,x,y){};
 
 bool LShape::draw(int scale) const{
+  // SOMEDAY GIVE IS_TRUE A BETTER NAME
   bool is_true=false;
   const int width_rec=1*scale;
   const int height_rec=3*scale;
