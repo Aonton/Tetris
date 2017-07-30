@@ -6,8 +6,19 @@
 #ifndef T_SHAPE_H
 #define T_SHAPE_H
 
-class TShape{
+#include <MicroView.h>
+#include "Tetrominoes.h"
+
+class TShape: public Tetrominoes{
   public:
+    TShape();
+    TShape(int,int,int);
+
+    virtual bool draw(int) const;
+    // TO DO: MOVE THIS COMMENT TO A MORE APP. PLACE
+    // Note piece_loc is the top left most pixel
+    // when line [] is in orientation 0
+    // ........[][][]...............................
   private:
 
 };

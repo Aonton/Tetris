@@ -22,8 +22,8 @@ const int height=4*scale;
      {   // Line piece will look like this [][][][]
 
          if(drawDegree(display_size_len-3-((scale-1)*4),display_size_wid))
-         { uView.rectFill(getPieceLoc(1),getPieceLoc(2),height,width);
-           is_true=true;
+         {   uView.rectFill(getPieceLoc(1),getPieceLoc(2),height,width);
+             is_true=true;
          }
      }
      break;
@@ -35,8 +35,8 @@ const int height=4*scale;
          // ...............................[]..
 
          if(drawDegree(display_size_len,display_size_wid-3-((scale-1)*4)))
-         { uView.rectFill(getPieceLoc(1),getPieceLoc(2),width,height);
-           is_true=true;
+         {   uView.rectFill(getPieceLoc(1),getPieceLoc(2),width,height);
+             is_true=true;
          }
      }
      break;

@@ -1,4 +1,4 @@
-// Source file for mirrored L pieces
+// Source file for mirrored Square pieces
 // Amy Feng
 // 7/25/2017
 
@@ -14,15 +14,14 @@ bool SquareShape::draw(int scale) const{
   const int width=2*scale;
   const int height=2*scale;
 
-  // FIND A WAY TO SCALE THE PIECES
   switch(getCurrentOrient())
   {
      case DEGREE0:
      case DEGREE180:
      case DEGREE90:
      case DEGREE270:
-     {   // Line piece will look like this [][]
-         // ...............................[][]
+     {   // Square piece will look like this [][]
+         // .................................[][]
 
          if(drawDegree(display_size_len-(1*scale),display_size_wid-(1*scale)))
          {   uView.rectFill(getPieceLoc(1),getPieceLoc(2),width,height);
