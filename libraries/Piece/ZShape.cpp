@@ -4,12 +4,16 @@
 
 #include "ZShape.h"
 
-ZShape::ZShape(): Tetrominoes(){};
+ZShape::ZShape(): Tetrominoes(){
+   setBorders();
+};
 
-ZShape::ZShape(int c, int x, int y):
-                     Tetrominoes(c,x,y){};
+ZShape::ZShape(int c, int x, int y, int s):
+                     Tetrominoes(c,x,y,s){
+  setBorders();
+};
 
-bool ZShape::draw(int scale) const{
+bool ZShape::draw() const{
   bool is_true=false;
   const int width=2*scale;
   const int height=1*scale;
@@ -22,7 +26,7 @@ bool ZShape::draw(int scale) const{
      {   // Z piece will look like this [][]
          // ..............................[][]
 
-         if(drawDegree(display_size_len-2-((scale-1)*3),display_size_wid-1-((scale-1)*2)))
+         if(drawDegree())
          {   repos[0]=1*scale;
              repos[1]=1*scale;
 
@@ -38,7 +42,7 @@ bool ZShape::draw(int scale) const{
          // ............................[][]
          // ............................[]..
 
-         if(drawDegree(display_size_len-1-((scale-1)*2),display_size_wid-2-((scale-1)*3)))
+         if(drawDegree())
          {   repos[0]=1*scale;
              repos[1]=1*scale;
 
@@ -50,9 +54,32 @@ bool ZShape::draw(int scale) const{
      }
      break;
      default:
-     {   Serial.println("Incorrect Orientation");
+     {   Serial.println("ZShape::draw() - Incorrect Orientation");
      }
    }; // end of switch statement
 
    return is_true;
+};
+
+void ZShape::setBorders(){
+  switch(getCurrentOrient())
+  {   case DEGREE0:
+      case DEGREE180:
+      {
+         MAX_WIDTH=display_size_len-2-((scale-1)*3);
+         MAX_HEIGHT=display_size_wid-1-((scale-1)*2);
+      }
+      break;
+      case DEGREE90:
+      case DEGREE270:
+      {
+         MAX_WIDTH=display_size_len-1-((scale-1)*2);
+         MAX_HEIGHT=display_size_wid-2-((scale-1)*3);
+      }
+      break;
+      default:
+      {
+         Serial.println("ZShape::setBorders() - Incorrect Orientation");
+      }
+  }; // end of switch function
 };

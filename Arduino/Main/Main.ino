@@ -18,13 +18,13 @@
 // global space (Remember: Does it really need to be here?!)
 enum buttons { UNUSED1= 0, UNUSED2= 1, UP = 2, DOWN = 3, LEFT = 5, RIGHT =6 };
 
-//LineShape test;
-//LShape test;
-//SquareShape test;
-//MirroredLShape test;
-//TShape test2;
-//ZShape test3;
-//SShape test4;
+LineShape test1;
+//LShape test2;
+//SquareShape test3;
+//MirroredLShape test4;
+//TShape test5;
+//ZShape test6;
+//SShape test7;
 //PieceBoard test;
 
 // CHECK DRAW LIMIT
@@ -48,9 +48,12 @@ void setup() {
 
 void loop() {
 
-  PieceBoard test;
-
   uView.clear(PAGE);
+
+  test1.moveDown();
+  test1.draw();
+
+  delay(1000);
 
   /*if(digitalRead(UP) == LOW)
   {   test.setPieceLoc(0,0);
@@ -75,8 +78,6 @@ void loop() {
       test4.setCurrentOrient(270);
       test4.draw(3);
   }*/
-
- test.display();
 
   uView.display();
 }

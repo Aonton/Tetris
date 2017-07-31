@@ -10,18 +10,26 @@
 
 class Tetrominoes{
   public:
+
     Tetrominoes();
-    Tetrominoes(int,int,int);
+    Tetrominoes(int,int,int,int);
 
-    void setPieceLoc(int,int);
+    bool setPieceLoc(int,int);
     int getPieceLoc(int) const;
-
-    void setCurrentOrient(int);
     int getCurrentOrient() const;
+    int getScale() const;
 
-    virtual bool draw(int) const=0;
+    int getMaxWidth() const;
+    int getMaxHeight() const;
+
+    virtual bool draw() const=0;
+
+    virtual bool moveDown();
   protected:
-    bool drawDegree(int,int) const;
+    bool drawDegree() const;
+    // For MAX_WIDTH and MAX_HEIGHT
+    virtual void setBorders()=0;
+    void setCurrentOrient(int);
 
    // should be rid of this enum-> useless
     enum orientation { DEGREE0=0, DEGREE90=90, DEGREE180=180, DEGREE270=270 };
@@ -30,9 +38,15 @@ class Tetrominoes{
     static const int display_size_len=64;
     static const int display_size_wid=48;
 
+    int scale;
+    int MAX_WIDTH;
+    int MAX_HEIGHT;
+
   private:
+    void setScale(int);
+
     // This value must be always checked to make
-    // it fits the mircoview 48x64 screen
+    // it fits the mircoview 48x64 screen when scaled
     int piece_loc[2];
     orientation currentOrient;
 };

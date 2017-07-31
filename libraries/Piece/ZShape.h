@@ -12,9 +12,11 @@
 class ZShape: public Tetrominoes{
   public:
     ZShape();
-    ZShape(int,int,int);
+    ZShape(int,int,int,int);
+    // For MAX_WIDTH and MAX_HEIGHT
+    virtual void setBorders();
 
-    virtual bool draw(int) const;
+    virtual bool draw() const;
     // TO DO: MOVE THIS COMMENT TO A MORE APP. PLACE
     // Note piece_loc is the top left most pixel
     // when the Z shape is in orientation DEGREE0

@@ -12,9 +12,11 @@
 class SShape: public Tetrominoes{
   public:
     SShape();
-    SShape(int,int,int);
+    SShape(int,int,int,int);
+    // For MAX_WIDTH and MAX_HEIGHT
+    virtual void setBorders();
 
-    virtual bool draw(int) const;
+    virtual bool draw() const;
     // TO DO: MOVE THIS COMMENT TO A MORE APP. PLACE
     // Note piece_loc is the top left most pixel
     // when the S shape is in orientation DEGREE0
