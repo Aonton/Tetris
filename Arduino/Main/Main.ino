@@ -1,31 +1,13 @@
+#include <Board.h>
+#include <Draw_Game.h>
+
 #include <SoftwareSerial.h>
 #include <MicroView.h>
 
-// PUT THE TWO BELOW INTO ANOTHER LIBRARY
-#include <PieceBoard.h>
-
-#include <GeneratePiece.h>
-
-#include <LineShape.h>
-#include <LShape.h>
-#include <MirroredLShape.h>
-#include <SquareShape.h>
-#include <SShape.h>
-#include <Tetrominoes.h>
-#include <TShape.h>
-#include <ZShape.h>
+Board board;
 
 // global space (Remember: Does it really need to be here?!)
 enum buttons { UNUSED1= 0, UNUSED2= 1, UP = 2, DOWN = 3, LEFT = 5, RIGHT =6 };
-
-LineShape test1;
-//LShape test2;
-//SquareShape test3;
-//MirroredLShape test4;
-//TShape test5;
-//ZShape test6;
-//SShape test7;
-//PieceBoard test;
 
 // CHECK DRAW LIMIT
 
@@ -50,8 +32,8 @@ void loop() {
 
   uView.clear(PAGE);
 
-  test1.moveDown();
-  test1.draw();
+  //test1.moveDown();
+  //test1.draw();
 
   delay(1000);
 
